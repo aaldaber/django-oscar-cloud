@@ -12,6 +12,7 @@ django-widget-tweaks==1.5.0
 djangorestframework==3.14.0
 factory-boy==3.2.1
 Faker==20.1.0
+gunicorn
 phonenumbers==8.13.26
 Pillow==9.2.0
 psycopg2-binary==2.9.3
