@@ -13,6 +13,18 @@ services:
     restart: unless-stopped
     depends_on:
       - db
+  qrcode:
+    build:
+      context: ./qrcode
+      dockerfile: Dockerfile
+    container_name: qr_frobshop
+    expose:
+      - 8000
+    ports:
+      - "127.0.0.1:1778:8000"
+    restart: unless-stopped
+    depends_on:
+      - web
   db:
     image: postgres:13-alpine
     container_name: db_frobshop
