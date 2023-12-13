@@ -12,4 +12,4 @@ COPY . $APP_HOME
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-CMD python manage.py collectstatic --no-input; gunicorn frobshop.wsgi --workers 8 -b 0.0.0.0:8000 --threads=2 --worker-class=gthread --timeout 90 --capture-output --log-level info --worker-tmp-dir /dev/shm
+CMD python manage.py collectstatic --no-input; gunicorn frobshop.wsgi --workers 4 -b 0.0.0.0:8000 --threads=2 --worker-class=gthread --timeout 90 --capture-output --log-level info --worker-tmp-dir /dev/shm
