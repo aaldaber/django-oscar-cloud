@@ -209,3 +209,5 @@ OSCAR_ORDER_STATUS_PIPELINE = {
     'Being processed': ('Processed', 'Cancelled',),
     'Cancelled': (),
 }
+
+OSCAR_ALLOW_ANON_CHECKOUT = True
