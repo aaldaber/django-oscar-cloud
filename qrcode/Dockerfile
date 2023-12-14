@@ -10,4 +10,6 @@ COPY . $APP_HOME
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
+EXPOSE 8000
+
 CMD gunicorn wsgi:app --workers 4 -b 0.0.0.0:8000 --threads=2 --worker-class=gthread --timeout 90 --worker-tmp-dir /dev/shm
