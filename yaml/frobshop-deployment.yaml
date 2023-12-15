@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frobshop-app
+  labels:
+    app: frobshop
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frobshop
+  template:
+    metadata:
+      labels:
+        app: frobshop
+    spec:
+      containers:
+        - image: aaldaber/frobshop:latest
+          name: frobshop
+          envFrom:
+          - secretRef:
+              name: frobshop-secret
+          - configMapRef:
+              name: frobshop-config
+          ports:
+            - containerPort: 8000
+              name: gunicorn
