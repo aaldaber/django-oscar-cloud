@@ -1,12 +1,12 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: frobshop
+  name: frobshop-hpa
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: frobshop
+    name: frobshop-app
   minReplicas: 1
   maxReplicas: 20
   metrics:
@@ -20,12 +20,12 @@ spec:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: qrcode
+  name: qrcode-hpa
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: qrcode
+    name: qrcode-app
   minReplicas: 1
   maxReplicas: 20
   metrics:
