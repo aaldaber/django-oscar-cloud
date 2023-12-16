@@ -265,3 +265,5 @@ logging.config.dictConfig({
         },
     },
 })
+
+QR_CODE_ADDRESS = os.getenv('QR_CODE_ADDRESS')

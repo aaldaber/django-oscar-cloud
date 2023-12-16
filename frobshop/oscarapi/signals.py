@@ -1,6 +1,7 @@
 from django.dispatch import Signal, receiver
 import requests
 from django.utils import timezone
+from django.conf import settings
 
 oscarapi_post_checkout = Signal(providing_args=["order", "user", "request", "response"])
 
@@ -9,7 +10,7 @@ oscarapi_post_checkout = Signal(providing_args=["order", "user", "request", "res
 def qr_callback(sender, **kwargs):
     print("New order posted!")
     order = kwargs.get("order")
-    the_qr_code = requests.get("http://qrcode:8000/qrcode?data={}".format(order.number))
+    the_qr_code = requests.get("{}/qrcode?data={}".format(settings.QR_CODE_ADDRESS, order.number))
     print("Request status: {}".format(the_qr_code.status_code))
     order.qr_code_sync = the_qr_code.content
     order.qr_code_sync_datetime = timezone.now()
