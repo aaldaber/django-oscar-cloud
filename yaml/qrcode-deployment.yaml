@@ -1,26 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frobshop-app
+  name: qrcode-app
   labels:
-    app: frobshop
+    app: qrcode
 spec:
   selector:
     matchLabels:
-      app: frobshop
+      app: qrcode
   template:
     metadata:
       labels:
-        app: frobshop
+        app: qrcode
     spec:
       containers:
-        - image: aaldaber/frobshop:latest
-          name: frobshop
-          envFrom:
-          - secretRef:
-              name: frobshop-secret
-          - configMapRef:
-              name: frobshop-config
+        - image: aaldaber/qrcode:latest
+          name: qrcode
           ports:
             - containerPort: 8000
               name: gunicorn

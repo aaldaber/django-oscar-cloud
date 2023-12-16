@@ -11,3 +11,17 @@ spec:
       protocol: TCP
       port: 80
       targetPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: qrcode-loadbalancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: qrcode
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8000
