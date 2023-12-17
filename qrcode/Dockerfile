@@ -12,4 +12,4 @@ RUN pip install -r requirements.txt
 
 EXPOSE 8000
 
-CMD gunicorn wsgi:app --workers 8 -b 0.0.0.0:8000 --threads=2 --worker-class=gthread --timeout 90 --worker-tmp-dir /dev/shm
+CMD gunicorn wsgi:app --workers 5 -b 0.0.0.0:8000 --threads=8 --worker-class=gthread --timeout 90 --worker-tmp-dir /dev/shm

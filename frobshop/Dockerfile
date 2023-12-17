@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 
 EXPOSE 8000
 
-CMD gunicorn frobshop.wsgi --workers 8 -b 0.0.0.0:8000 --threads=2 --worker-class=gthread --timeout 90 --capture-output --log-level info --worker-tmp-dir /dev/shm
+CMD gunicorn frobshop.wsgi --workers 5 -b 0.0.0.0:8000 --threads=8 --worker-class=gthread --timeout 90 --capture-output --log-level info --worker-tmp-dir /dev/shm
