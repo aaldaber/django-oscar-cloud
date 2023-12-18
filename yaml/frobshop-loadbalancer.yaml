@@ -2,6 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: frobshop-loadbalancer
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-port: "80"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-protocol: "http"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-path: "/api"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-check-interval-seconds: "5"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-response-timeout-seconds: "7"
 spec:
   type: LoadBalancer
   selector:
@@ -16,6 +23,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: qrcode-loadbalancer
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-port: "80"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-protocol: "http"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-path: "/qrcode?data=1"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-check-interval-seconds: "5"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-response-timeout-seconds: "7"
 spec:
   type: LoadBalancer
   selector:
