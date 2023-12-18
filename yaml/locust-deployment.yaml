@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust-app
+  labels:
+    app: locust
+spec:
+  selector:
+    matchLabels:
+      app: locust
+  template:
+    metadata:
+      labels:
+        app: locust
+    spec:
+      containers:
+        - image: aaldaber/locust:latest
+          name: locust
+          ports:
+            - containerPort: 8089
+              name: locust
+          resources:
+            requests:
+              cpu: 1000m
