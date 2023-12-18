@@ -22,3 +22,4 @@ urlpatterns = [
 path('', include(apps.get_app_config('oscar').urls[0])),
 path("api/", include("oscarapi.urls")),
 ]
+urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]
