@@ -7,7 +7,7 @@ class QuickstartUser(HttpUser):
     wait_time = between(1, 5)
 
     @task
-    def hello_world(self):
+    def buy_one_item(self):
         response = self.client.get("/api/basket/")
         time.sleep(random.randint(1, 5))
         response = self.client.get('/api/products/')
@@ -56,3 +56,7 @@ class QuickstartUser(HttpUser):
             }
         }
         response = self.client.post('/api/checkout/', json=data)
+        if response.status_code != 200:
+            print(data)
+        # close request to start a new session
+        self.client.close()
