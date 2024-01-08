@@ -9,8 +9,12 @@ class QuickstartUser(HttpUser):
     @task
     def buy_one_item(self):
         response = self.client.get("/api/basket/")
+        if response.status_code > 399:
+            return
         time.sleep(random.randint(1, 5))
         response = self.client.get('/api/products/')
+        if response.status_code > 399:
+            return
         time.sleep(random.randint(1, 5))
         product = random.choice(response.json())
         data = {
@@ -19,15 +23,23 @@ class QuickstartUser(HttpUser):
         }
         if 1 == random.randint(1, 10):
             response = self.client.post('/api/basket/add-product/', data=data)
+            if response.status_code > 399:
+                return
             time.sleep(random.randint(1, 5))
             response = self.client.get("/api/basket/")
+            if response.status_code > 399:
+                return
             time.sleep(random.randint(1, 5))
             basket_data = response.json()
             guest_email = "foo@example.com"
             response = self.client.get("/api/countries/")
+            if response.status_code > 399:
+                return
             countries = response.json()
             country_url = countries[1]['url']
             response = self.client.get("/api/basket/shipping-methods/")
+            if response.status_code > 399:
+                return
             shipping_methods = response.json()
             shipping_method = shipping_methods[0]
             data = {
